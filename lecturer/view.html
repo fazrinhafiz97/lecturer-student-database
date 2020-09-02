@@ -1,0 +1,99 @@
+<?php
+include("sambungan.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+h2 {text-align: center;}
+
+/* Style the side navigation */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
+  overflow-x: hidden;
+  
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: skyblue;
+  color: black;
+  width:200px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 20px;
+ text-align: left;
+ column-width: 100px;
+ tr:nth-child(even){background-color: #f2f2f2}
+}
+
+</style>
+</head>
+<body>
+<div class="sidenav">
+  <a href="#">Course</a>
+  <a href="#">Subject</a>
+  <a href="#">Register</a>
+  <a href="#">View Student</a>
+  <a href="#">Logout</a>
+</div>
+<form>
+<h2>Quiz Answer<h2>
+<table>
+<tr bgcolor="lightblue">
+<th>No</th>
+<th>Name</th>
+<th>Matric Number</th>
+<th>Q1</th>
+<th>Q2</th>
+<th>Q3</th>
+<th>Q4</th>
+<th>Q5</th>
+</tr>
+<?php
+        $bil = 1;
+        $sql = "SELECT * FROM quiz";
+        $result = mysqli_query($connection,$sql) or die(mysqli_error($connection));
+        while($row = mysqli_fetch_assoc($result)){
+        	?>
+      <tr>
+        <td><?php echo $bil++;?></td>
+        <td><?php echo $row['Name']; ?></td>
+        <td><?php echo $row['Matric_Id']; ?></td>
+		<td><?php echo $row['Q1']; ?></td>
+		<td><?php echo $row['Q2']; ?></td>
+		<td><?php echo $row['Q3']; ?></td>
+		<td><?php echo $row['Q4']; ?></td>
+		<td><?php echo $row['Q5']; ?></td>
+      </tr>
+      <?php
+        }
+        ?>
+</table>
+</form>
+</body>
+</html>
